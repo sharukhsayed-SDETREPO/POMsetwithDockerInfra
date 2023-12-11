@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.qa.hubspot.base.BasePage;
 import com.qa.hubspot.pages.LoginPageClass;
@@ -16,11 +17,12 @@ public class BaseTest    {
 	public BasePage basepage;
 	public LoginPageClass loginpageclass;
 	
-	
+	@Parameters("browser")
 	@BeforeTest
-	public void setup() {
+	public void setup(String BNAMEW) {
 		basepage =new BasePage();
 		prop=basepage.init_Prop();
+		prop.setProperty("browser", BNAMEW);
 		driver=basepage.init_Driv(prop);
 		loginpageclass=new LoginPageClass(driver);
 	}

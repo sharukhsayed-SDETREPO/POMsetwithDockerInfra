@@ -9,6 +9,8 @@
 					<listener class-name="com.qa.hubspot.testlisteners.TestAllureListener" /> 
  </listeners>
 	<test name="HubSpot Feature Testing">
+	
+	<parameter name ="browser" value ="chrome" />
 		<classes>
 		
 			<class name="com.qa.hubspot.tests.LoginTest"/>
@@ -21,10 +23,11 @@
 	
 		
 	<test name="Huxcgdrtdrtdrt">
+		<parameter name ="browser" value ="chrome" />
 		<classes>
 		
 			
-              <!--   <class name="com.qa.hubspot.tests.HomePageTest"/>-->
+            	<class name="com.qa.hubspot.tests.LoginTest"/>
 		</classes>
 	</test>
 </suite>

@@ -4,18 +4,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
 
 import com.qa.hubspot.utils.OptionsManager;
 
@@ -44,12 +47,34 @@ public class BasePage {
 		  OP=new OptionsManager(prop);
 		if(BrowserName.equalsIgnoreCase("CHROME")) {
 			WebDriverManager.chromedriver().setup();
-			//driver=new ChromeDriver();	
+		
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+			
+			
+				init_RWD(BrowserName);
+				
+			}
+			else {
 			TLDriver.set(driver=new ChromeDriver(OP.getChromeOptions()));
+			
+			
+			
+			}
+			
+			
+			
 		}
 		else if (BrowserName.equalsIgnoreCase("FireFox")) {
 			WebDriverManager.firefoxdriver().setup();
+			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+				
+				
+				init_RWD(BrowserName);
+				
+			}
+			else {
 			TLDriver.set(driver=new FirefoxDriver(OP.getFirefoxOptions()));
+			}
 		}
 		else if (BrowserName.equalsIgnoreCase("SAFARI")) {
 			WebDriverManager.safaridriver().setup();
@@ -67,7 +92,40 @@ public class BasePage {
 		
 	}
 	
+	//initialize your remote webdriver
 	
+
+	public void init_RWD(String browsername) {
+		
+		
+		if (browsername.equalsIgnoreCase("chrome")) {
+		ChromeOptions croopt= new ChromeOptions();
+		croopt.setCapability(ChromeOptions.CAPABILITY, OP.getChromeOptions());
+		
+		try {
+			TLDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),croopt));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		
+		
+		
+		
+		if (browsername.equalsIgnoreCase("firefox")) {
+			FirefoxOptions croopt= new FirefoxOptions();
+			croopt.setCapability(FirefoxOptions.FIREFOX_OPTIONS, OP.getFirefoxOptions());
+			
+			try {
+				TLDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),croopt));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+		
+	}
 
 	public static synchronized WebDriver getDriver(){
 		return TLDriver.get();
