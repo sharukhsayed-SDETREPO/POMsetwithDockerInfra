@@ -1,0 +1,8 @@
+<suite name="Suite1"> <!--@BeforeSuite runs here just once--> 
+  <test name="exampletest1"> <!--@BeforeTest runs here just once-->
+    <classes>
+       <class name="Test2"></class>
+       <class name="Test1"></class>
+    </classes>
+  </test> <!--@AfterTest runs here just once-->
+</suite> <!--@AfterSuite runs here just once-->
