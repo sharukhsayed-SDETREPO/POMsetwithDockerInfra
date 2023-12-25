@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="33059" started-at="2023-12-08T22:19:10 IST" finished-at="2023-12-08T22:19:43 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="33059" started-at="2023-12-08T22:19:10 IST" finished-at="2023-12-08T22:19:43 IST">
+      <class name="com.qa.hubspot.tests.LoginTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.hubspot.tests.LoginTest@c1fca1e]" name="setup" is-config="true" duration-ms="26696" started-at="2023-12-08T22:19:10 IST" finished-at="2023-12-08T22:19:36 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="VerifySignupLink()[pri:2, instance:com.qa.hubspot.tests.LoginTest@c1fca1e]" name="VerifySignupLink" duration-ms="1860" started-at="2023-12-08T22:19:36 IST" finished-at="2023-12-08T22:19:38 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifySignupLink -->
+        <test-method status="PASS" signature="GetTitleTest()[pri:3, instance:com.qa.hubspot.tests.LoginTest@c1fca1e]" name="GetTitleTest" duration-ms="463" started-at="2023-12-08T22:19:39 IST" finished-at="2023-12-08T22:19:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetTitleTest -->
+        <test-method status="PASS" signature="DOLogin()[pri:4, instance:com.qa.hubspot.tests.LoginTest@c1fca1e]" name="DOLogin" duration-ms="2028" started-at="2023-12-08T22:19:40 IST" finished-at="2023-12-08T22:19:42 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DOLogin -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.qa.hubspot.tests.LoginTest@c1fca1e]" name="teardown" is-config="true" duration-ms="894" started-at="2023-12-08T22:19:42 IST" finished-at="2023-12-08T22:19:43 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.qa.hubspot.tests.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
