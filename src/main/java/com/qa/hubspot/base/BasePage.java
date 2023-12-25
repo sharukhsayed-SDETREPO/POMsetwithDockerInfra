@@ -30,45 +30,28 @@ public class BasePage {
 	
 	public WebDriver driver;
 	public Properties prop;
-   public OptionsManager OP;
-	public static ThreadLocal<WebDriver> TLDriver= new ThreadLocal<WebDriver>();
+    public OptionsManager OP;
+    public static ThreadLocal<WebDriver> TLDriver= new ThreadLocal<WebDriver>();
 	
 	
 	
 	public WebDriver init_Driv(Properties prop ) {
-		
-	
-		
-		
-		
 		String BrowserName= prop.getProperty("browser").trim();
-		
 		System.out.println("Launching Browser" + BrowserName);
 		  OP=new OptionsManager(prop);
 		if(BrowserName.equalsIgnoreCase("CHROME")) {
 			WebDriverManager.chromedriver().setup();
-		
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-			
-			
 				init_RWD(BrowserName);
-				
-			}
+				}
 			else {
 			TLDriver.set(driver=new ChromeDriver(OP.getChromeOptions()));
-			
-			
-			
 			}
-			
-			
-			
 		}
 		else if (BrowserName.equalsIgnoreCase("FireFox")) {
 			WebDriverManager.firefoxdriver().setup();
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				
-				
+		
 				init_RWD(BrowserName);
 				
 			}
@@ -82,6 +65,7 @@ public class BasePage {
 			TLDriver.set(driver =new SafariDriver());
 		}	
 		else {
+			
 			System.out.println("Browser not configured");
 		}
 		getDriver().manage().deleteAllCookies();
@@ -92,16 +76,16 @@ public class BasePage {
 		
 	}
 	
-	//initialize your remote webdriver
+	
+	
 	
 
+	//initialize your remote webdriver
 	public void init_RWD(String browsername) {
-		
-		
+		  OP=new OptionsManager(prop);
 		if (browsername.equalsIgnoreCase("chrome")) {
 		ChromeOptions croopt= new ChromeOptions();
 		croopt.setCapability(ChromeOptions.CAPABILITY, OP.getChromeOptions());
-		
 		try {
 			TLDriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),croopt));
 		} catch (MalformedURLException e) {
@@ -109,9 +93,6 @@ public class BasePage {
 			e.printStackTrace();
 		}
 		}
-		
-		
-		
 		
 		if (browsername.equalsIgnoreCase("firefox")) {
 			FirefoxOptions croopt= new FirefoxOptions();
@@ -124,13 +105,14 @@ public class BasePage {
 				e.printStackTrace();
 			}
 			}
-		
 	}
-
+	
+	////Local thread initailizatiobn
 	public static synchronized WebDriver getDriver(){
 		return TLDriver.get();
 	}
 	
+	///Properties initialization
 	public Properties init_Prop() {
 		prop = new Properties();
 		String path = null;
@@ -168,12 +150,9 @@ public class BasePage {
 
 		return prop;
 	}
-	
-	
-	
 
+	
 	public String getScreenshot() {
-		
 	File src=	((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 	String path=System.getProperty("user.dir")+"/ScreenShots/"+System.currentTimeMillis()+".png";	
 		File dest =new File(path);

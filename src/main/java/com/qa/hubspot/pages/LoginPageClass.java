@@ -52,8 +52,6 @@ public class LoginPageClass extends BasePage {
 	//3.Perform login
 	@Step("This is login with :{0} usenarme and :{1} password")
 	public  HomePageClass  doLogin(String UN,String PWD) {
-		
-		
 		elemenetutil.waitforelementtobevisible(email, 10).sendKeys(UN);;
 		elemenetutil.doActionsSendKeys(pwd, PWD);
 		elemenetutil.waitForElementToBeClickable(LgnBtn, 10).click();

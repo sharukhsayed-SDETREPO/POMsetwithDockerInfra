@@ -25,13 +25,14 @@ public class ExcelUtil {
 			FileInputStream ip =new FileInputStream("./src/main/java/com/qa/hubspot/testdata/"+ExcelName+".xlsx");
 			book =WorkbookFactory.create(ip);
 			sheet=book.getSheet(SheetName);
+			int lastrow=sheet.getLastRowNum();
+			int lastcol=sheet.getRow(0).getLastCellNum();
+			data=new Object[lastrow][lastcol];
 			
-			data=new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
 			
-			
-			for (int i=0;i<sheet.getLastRowNum();i++) {
+			for (int i=0;i<lastrow;i++) {
 				
-				for(int j= 0;j<sheet.getRow(0).getLastCellNum();j++) {
+				for(int j= 0;j<lastcol;j++) {
 					
 					data[i][j]=sheet.getRow(i+1).getCell(j).toString();
 				}
@@ -50,13 +51,6 @@ public class ExcelUtil {
 	
 	
 	
-	public static void main(String args[]) {
-		
-		
-	Object opi[][]=GetExcelUtilData("HubsportTestData", "contacts");
-	
-	
-	System.out.println(opi[2][1]);
-	}
+
 
 }
